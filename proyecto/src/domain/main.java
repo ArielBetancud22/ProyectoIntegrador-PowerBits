@@ -5,11 +5,8 @@ package domain;
 public class main {
     public static void main(String[] args) {
         System.out.println("hola mundo");
-        
-        System.out.println("hoa");
-        
-        
-        
+        System.out.println("Como estan?");
+        System.out.println("El juani se come los mocos");
         
         
     }
