@@ -10,14 +10,21 @@ public class main {
     public static void main(String[] args) {
        bienvenidos();
        menu();
-        
+       
     }
+    
     
     public static void menu(){
         
         Scanner entrada = new Scanner(System.in);
         
-        int opcion;
+        int opcion; 
+        int variante1 = 0; 
+        int variante2 = 0;
+        
+        String nombre1 = " ";
+        String nombre2 = " ";
+        
         
         do{
             System.out.println("");
@@ -39,21 +46,19 @@ public class main {
         
         switch(opcion){
             case 1:
-                menuJugadores();
+                menuJugadores(nombre1, nombre2, variante1, variante2);
                 
         }
 
     }
     
     
-    public static void menuJugadores(){
+    public static void menuJugadores(String nombre1, String nombre2, int variante1, int variante2){
         
         Scanner entrada = new Scanner(System.in); 
         
         int eleccion;
-        String nombre1, nombre2;
-        
-        
+ 
         System.out.println("                                                                    L O T E R I A");
         System.out.println("");
         System.out.println("                                        1- Ingrese el nombre de los jugadores");
@@ -65,10 +70,6 @@ public class main {
         eleccion = Integer.parseInt(entrada.nextLine());
         
         System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        
-        
         
         switch(eleccion){
         
@@ -86,45 +87,117 @@ public class main {
                 System.out.println("");
                 System.out.println("");
             case 2:
-                seleccionCartones();
-            
+                seleccionCartones(nombre1, nombre2, variante1, variante2);
+                
         }
         
     }
-    
     public static void seleccionCartones(){
-        int cartonElegido;
-        carton_1();
-        carton_2();
-        carton_3();
-        carton_4();
+        
     }
+    public static void seleccionCartones(String nombre1, String nombre2, int variante1, int variante2){
+        Scanner entrada = new Scanner(System.in); 
+        
+        int cartonElegido = 0;
+        System.out.println("                     ------------------------------------------------------------------------------------");
+        carton_1(); carton_2(); carton_3(); carton_4();
+        
+        System.out.print("                                       - "+nombre1+" seleccione el numero de carton que desee: ");
+        variante1 = Integer.parseInt(entrada.nextLine());
+        System.out.println("                     ------------------------------------------------------------------------------------");
+        switch (variante1) {
+            case 1:
+                System.out.println("                                        " + nombre1 + " selecciono:");
+                carton_1();
+                cartonElegido = 1;
+                break;
+            case 2:
+                System.out.println("                                        " + nombre1 + " selecciono:");
+                carton_2();
+                cartonElegido = 2;
+                break;
+            case 3:
+                System.out.println("                                        " + nombre1 + " selecciono:");
+                carton_3();
+                cartonElegido = 3;
+                break;
+            case 4:
+                System.out.println("                                        " + nombre1 + " selecciono:");
+                carton_4();
+                cartonElegido = 4;
+                break;
+        }
+        System.out.println("                     ------------------------------------------------------------------------------------");
+        if (cartonElegido == 1){
+            carton_2(); carton_3(); carton_4();
+        } else if (cartonElegido == 2) {
+            carton_1(); carton_3(); carton_4();
+        } else if (cartonElegido == 3) {
+            carton_1(); carton_2(); carton_4();
+        } else if (cartonElegido == 4) {
+            carton_1(); carton_2(); carton_3();
+        }
+        System.out.print("                                       - "+nombre2+" seleccione el numero de carton que desee: ");
+        variante2 = Integer.parseInt(entrada.nextLine());
+        System.out.println("                     ------------------------------------------------------------------------------------");
+        switch (variante2) {
+            case 1:
+                System.out.println("                                        " + nombre2 + " selecciono:");
+                carton_1();
+                break;
+            case 2:
+                System.out.println("                                        " + nombre2 + " selecciono:");
+                carton_2();
+                break;
+            case 3:
+                System.out.println("                                        " + nombre2 + " selecciono:");
+                carton_3();
+                break;
+            case 4:
+                System.out.println("                                        " + nombre2 + " selecciono:");
+                carton_4();
+                break;
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     public static void armadoCarton1(String[][] carton1){
         
         carton1[0][0] = "0"; carton1[0][1] = "0"; carton1[0][2] = "0"; carton1[0][3] = "31"; carton1[0][4] = "0"; carton1[0][5] = "57"; carton1[0][6] = "65"; carton1[0][7] = "0"; carton1[0][8] = "88"; 
         carton1[1][0] = "0"; carton1[1][1] = "12"; carton1[1][2] = "0"; carton1[1][3] = "35"; carton1[1][4] = "47"; carton1[1][5] = "0"; carton1[1][6] = "0"; carton1[1][7] = "75"; carton1[1][8] = "90";
-        carton1[2][0] = "8"; carton1[2][1] = "19"; carton1[2][2] = "0"; carton1[2][3] = "0"; carton1[2][4] = "48"; carton1[2][5] = "0"; carton1[2][6] = "67"; carton1[2][7] = "76"; carton1[2][8] = "0"; 
+        carton1[2][0] = " 8"; carton1[2][1] = "19"; carton1[2][2] = "0"; carton1[2][3] = "0"; carton1[2][4] = "48"; carton1[2][5] = "0"; carton1[2][6] = "67"; carton1[2][7] = "76"; carton1[2][8] = "0"; 
     }
     public static void mostrarCarton1(String[][] carton1) {
         System.out.println("");
+        System.out.println("                                        CARTON N°1");
         System.out.println("");
-        System.out.println("");
-         
+        System.out.println("                                        ----------------------------------------------");
+        
         for (int i = 0; i <= 2; i++) {
+            System.out.print("                                        |");
             for (int j = 0; j <= 8; j++) {
                 if (carton1[i][j] == "0"){
-                    carton1[i][j] = " "; 
+                    carton1[i][j] = "  "; 
                 }
                 if (carton1.length > 1){
-                    System.out.print(" "+carton1[i][j]+" |");
+                    System.out.print(" "+carton1[i][j]+ " |");
+                }else{
+                    System.out.print(" "+carton1[i][j]+ "  |");
                 }
-                else{
-                    System.out.print(" "+carton1[i][j]+"  |");
-                }
-            }
+            } 
             System.out.println("");
         }
+        System.out.println("                                        ----------------------------------------------");
      }
     
     
@@ -132,30 +205,32 @@ public class main {
     
     public static void armadoCarton2(String[][] carton2){
 
-        carton2[0][0] = "1"; carton2[0][1] = "0"; carton2[0][2] = "23"; carton2[0][3] = "0"; carton2[0][4] = "45"; carton2[0][5] = "0"; carton2[0][6] = "61"; carton2[0][7] = "0"; carton2[0][8] = "82"; 
+        carton2[0][0] = " 1"; carton2[0][1] = "0"; carton2[0][2] = "23"; carton2[0][3] = "0"; carton2[0][4] = "45"; carton2[0][5] = "0"; carton2[0][6] = "61"; carton2[0][7] = "0"; carton2[0][8] = "82"; 
         carton2[1][0] = "0"; carton2[1][1] = "14"; carton2[1][2] = "0"; carton2[1][3] = "37"; carton2[1][4] = "49"; carton2[1][5] = "0"; carton2[1][6] = "69"; carton2[1][7] = "70"; carton2[1][8] = "0";
-        carton2[2][0] = "4"; carton2[2][1] = "0"; carton2[2][2] = "28"; carton2[2][3] = "0"; carton2[2][4] = "0"; carton2[2][5] = "55"; carton2[2][6] = "0"; carton2[2][7] = "78"; carton2[2][8] = "87";
+        carton2[2][0] = " 4"; carton2[2][1] = "0"; carton2[2][2] = "28"; carton2[2][3] = "0"; carton2[2][4] = "0"; carton2[2][5] = "55"; carton2[2][6] = "0"; carton2[2][7] = "78"; carton2[2][8] = "87";
     }
     
     public static void mostrarCarton2(String[][] carton2) {
         System.out.println("");
+        System.out.println("                                        CARTON N°2");
         System.out.println("");
-        System.out.println("");
-         
+        System.out.println("                                        ----------------------------------------------");
+        
         for (int i = 0; i <= 2; i++) {
+            System.out.print("                                        |");
             for (int j = 0; j <= 8; j++) {
                 if (carton2[i][j] == "0"){
-                    carton2[i][j] = " "; 
+                    carton2[i][j] = "  "; 
                 }
                 if (carton2.length > 1){
-                    System.out.print(" "+carton2[i][j]+" |");
+                    System.out.print(" "+carton2[i][j]+ " |");
+                }else{
+                    System.out.print(" "+carton2[i][j]+ "  |");
                 }
-                else{
-                    System.out.print(" "+carton2[i][j]+"  |");
-                }
-            }
+            } 
             System.out.println("");
         }
+        System.out.println("                                        ----------------------------------------------");
      }
     
     
@@ -166,29 +241,31 @@ public class main {
     
     public static void armadoCarton3(String[][] carton3){
         carton3[0][0] = "0"; carton3[0][1] = "0"; carton3[0][2] = "22"; carton3[0][3] = "0"; carton3[0][4] = "40"; carton3[0][5] = "50"; carton3[0][6] = "0"; carton3[0][7] = "71"; carton3[0][8] = "85"; 
-        carton3[1][0] = "6"; carton3[1][1] = "0"; carton3[1][2] = "29"; carton3[1][3] = "30"; carton3[1][4] = "0"; carton3[1][5] = "54"; carton3[1][6] = "0"; carton3[1][7] = "0"; carton3[1][8] = "81";
-        carton3[2][0] = "7"; carton3[2][1] = "16"; carton3[2][2] = "0"; carton3[2][3] = "34"; carton3[2][4] = "46"; carton3[2][5] = "0"; carton3[2][6] = "66"; carton3[2][7] = "0"; carton3[2][8] = "0";
+        carton3[1][0] = " 6"; carton3[1][1] = "0"; carton3[1][2] = "29"; carton3[1][3] = "30"; carton3[1][4] = "0"; carton3[1][5] = "54"; carton3[1][6] = "0"; carton3[1][7] = "0"; carton3[1][8] = "81";
+        carton3[2][0] = " 7"; carton3[2][1] = "16"; carton3[2][2] = "0"; carton3[2][3] = "34"; carton3[2][4] = "46"; carton3[2][5] = "0"; carton3[2][6] = "66"; carton3[2][7] = "0"; carton3[2][8] = "0";
     }
     
     public static void mostrarCarton3(String[][]  carton3) {
         System.out.println("");
+        System.out.println("                                        CARTON N°3");
         System.out.println("");
-        System.out.println("");
-         
+        System.out.println("                                        ----------------------------------------------");
+        
         for (int i = 0; i <= 2; i++) {
+            System.out.print("                                        |");
             for (int j = 0; j <= 8; j++) {
-                if ( carton3[i][j] == "0"){
-                     carton3[i][j] = " "; 
+                if (carton3[i][j] == "0"){
+                    carton3[i][j] = "  "; 
                 }
-                if ( carton3.length > 1){
-                    System.out.print(" "+ carton3[i][j]+" |");
+                if (carton3.length > 1){
+                    System.out.print(" "+carton3[i][j]+ " |");
+                }else{
+                    System.out.print(" "+carton3[i][j]+ "  |");
                 }
-                else{
-                    System.out.print(" "+ carton3[i][j]+"  |");
-                }
-            }
+            } 
             System.out.println("");
         }
+        System.out.println("                                        ----------------------------------------------");
     }
     
     
@@ -206,14 +283,12 @@ public class main {
         
     public static void mostrarCarton4(String[][]   carton4) {
         System.out.println("");
+        System.out.println("                                        CARTON N°4");
         System.out.println("");
-        System.out.println("");
-        System.out.println("                                   CARTON 4");
-        System.out.println("");
-        System.out.println("                            ____________________________________________");
+        System.out.println("                                        ----------------------------------------------");
         
         for (int i = 0; i <= 2; i++) {
-            System.out.print("                           |");
+            System.out.print("                                        |");
             for (int j = 0; j <= 8; j++) {
                 if (carton4[i][j] == "0"){
                     carton4[i][j] = "  "; 
@@ -224,10 +299,9 @@ public class main {
                     System.out.print(" "+carton4[i][j]+ "  |");
                 }
             } 
-                    
             System.out.println("");
         }
-        System.out.println("                            ____________________________________________");
+        System.out.println("                                        ----------------------------------------------");
     }
 
     
