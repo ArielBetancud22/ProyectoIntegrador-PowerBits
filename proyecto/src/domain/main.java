@@ -9,7 +9,7 @@ public class main {
     
     public static void main(String[] args) {
        bienvenidos();
-    
+       animaciones.teclaSeguir();
        menu();
        
     }
@@ -86,6 +86,7 @@ public class main {
                 System.out.println("                                                      ------------------------------------------");
                 System.out.println("");
                 System.out.println("");
+                animaciones.teclaSeguir();
                 System.out.println("");
             case 2:
                 seleccionCartones(nombre1, nombre2, variante1, variante2);

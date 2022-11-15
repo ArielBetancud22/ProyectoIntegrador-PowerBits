@@ -1,6 +1,8 @@
 
 package domain;
 
+import java.util.Scanner;
+
 
 public class animaciones {
     
@@ -30,5 +32,15 @@ public class animaciones {
         System.out.println("                                                     - P O W E R   B I T S -");
     }
     
+    static public void teclaSeguir() {
+        String seguir;
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Presione una tecla para seguir...");
+        try {
+            seguir = teclado.nextLine();
+        } catch (Exception e) {
+        }
+    }
    
+    
 }
