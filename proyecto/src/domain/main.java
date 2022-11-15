@@ -34,7 +34,6 @@ public class main {
             System.out.println("                                                      - - - M E N U   D E   O P C I O N E S - - -");
             System.out.println("");
             System.out.println("                                        1- Jugar Loteria");
-            esperar(2);
             System.out.println("                                        2- Jugar Quini6");
             System.out.println("                                        3- Salir");
             System.out.println("");
@@ -71,6 +70,7 @@ public class main {
         System.out.println("");
         System.out.print("                                        -Ingrese una opcion: ");
         eleccion = Integer.parseInt(entrada.nextLine());
+        
         
         System.out.println("");
         
