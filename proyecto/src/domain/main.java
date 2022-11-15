@@ -2,6 +2,7 @@
 package domain;
 
 import static domain.animaciones.bienvenidos;
+import static domain.animaciones.esperar;
 import java.util.Scanner;
 
 
@@ -33,6 +34,7 @@ public class main {
             System.out.println("                                                      - - - M E N U   D E   O P C I O N E S - - -");
             System.out.println("");
             System.out.println("                                        1- Jugar Loteria");
+            esperar(2);
             System.out.println("                                        2- Jugar Quini6");
             System.out.println("                                        3- Salir");
             System.out.println("");
