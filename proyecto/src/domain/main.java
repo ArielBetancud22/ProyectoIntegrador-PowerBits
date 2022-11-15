@@ -9,6 +9,7 @@ public class main {
     
     public static void main(String[] args) {
        bienvenidos();
+    
        menu();
        
     }
@@ -89,6 +90,8 @@ public class main {
             case 2:
                 seleccionCartones(nombre1, nombre2, variante1, variante2);
                 
+            case 3:
+                
         }
         
     }
@@ -158,12 +161,82 @@ public class main {
                 carton_4();
                 break;
         }
+
+    }
+    
+    public static void sortear(int variante1, int variante2, String nombre1, String nombre2){
+        boolean cartonLleno = false;
+        int cont = 0, cont_carton1 = 0, cont_carton2 = 0;
         
         
+        int nros[] = new int[90];
+        String carton1[][] = new String[3][9];
+        String carton2[][] = new String[3][9];
+        
+        armadoCartonPorVariante(variante1, carton1);
+        armadoCartonPorVariante(variante2, carton2);
+        
+        do{
+            System.out.println("");
+            System.out.println("");
+            System.out.println("                               Pulse una tecla para sortear el numero");
+            System.out.println("FALTA ESPERAR TECLA");
+            
+            
+            
+        }while(cartonLleno == true);
         
     }
     
     
+    public static void obtenerSinRepetir(int[] nros, int cont, int nro_sorteado){
+        boolean repetido = false;
+        
+        for (int i = 1; i < 1; i++) {
+            
+        }
+        
+         
+    }
+    
+    
+    
+    public static void armadoCartonPorVariante(int variante, String[][] carton){
+        if (variante == 1){
+            armadoCarton1(carton);
+        }else{
+            if (variante == 2){
+                armadoCarton2(carton);
+            }else{
+                if (variante == 3){
+                    armadoCarton3(carton);
+                }else{
+                    if (variante == 4){
+                        armadoCarton4(carton);
+                    }
+                }
+            }
+        }
+    }
+    
+    public static void mostrarCartonPorVariante(int variante, String[][] carton){
+        if (variante == 1){
+            mostrarCarton1(carton);
+        }else{
+            if (variante == 2){
+                mostrarCarton2(carton);
+            }else{
+                if (variante == 3){
+                    mostrarCarton3(carton);
+                }else{
+                    if (variante == 4){
+                        mostrarCarton4(carton);
+                    }
+                }
+            }
+        }
+    }
+
     
     
     
@@ -333,6 +406,8 @@ public class main {
         armadoCarton4(carton4); 
         mostrarCarton4(carton4);
         }
+
+    
 }   
 
 
