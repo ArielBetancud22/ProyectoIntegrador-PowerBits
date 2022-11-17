@@ -41,6 +41,18 @@ public class animaciones {
         } catch (Exception e) {
         }
     }
+    
+    static public void teclaSortear() {
+        String seguir;
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Presione una tecla para sortear...");
+        try {
+            seguir = teclado.nextLine();
+        } catch (Exception e) {
+        }
+    }
+    
+    
     public static void esperar(int segundos){
         try {
             Thread.sleep(segundos * 1000);

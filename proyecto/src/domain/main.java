@@ -49,7 +49,10 @@ public class main {
         switch(opcion){
             case 1:
                 menuJugadores(nombre1, nombre2, variante1, variante2);
+            case 2:
                 
+            case 3: 
+                animaciones.desarrolladores();
         }
 
     }
@@ -92,6 +95,7 @@ public class main {
                 System.out.println("");
             case 2:
                 seleccionCartones(nombre1, nombre2, variante1, variante2);
+                sortear(variante1, variante2, nombre1, nombre2);
                 
             case 3:
                 
@@ -182,8 +186,9 @@ public class main {
         do{
             System.out.println("");
             System.out.println("");
-            System.out.println("                               Pulse una tecla para sortear el numero");
-            System.out.println("FALTA ESPERAR TECLA");
+            System.out.println("");
+            animaciones.teclaSortear();
+            obtenerSinRepetir(nros, cont);
             
             
             
@@ -192,14 +197,45 @@ public class main {
     }
     
     
-    public static void obtenerSinRepetir(int[] nros, int cont, int nro_sorteado){
-        boolean repetido = false;
+    public static void obtenerSinRepetir(int[] nros, int cont){
+        
         
         for (int i = 1; i < 1; i++) {
+            boolean repetido = false;
+            int nro_sorteado = (int)(Math.random()*((90-0)+1));
             
+            for (int j = 1; cont == j; j++) {
+                
+                if (nro_sorteado == nros[j]){
+                    repetido = true;
+                }
+            }
+            if (repetido = true){
+                i = i-1;
+            }
+            else {
+                nros[cont] = nro_sorteado;
+                cont = cont++;
+                nros[cont] = 0;
+            } 
+         // System.out.println("Numero sorteado: "+nro_sorteado);  
         }
+  }
+    
+    public static void buscarCoincidencias(int [][]carton, int num,int cont){
+        int   k, textNum = 0;
+        String x, deIaS;
         
-         
+        for (int i = 0; i == 2; i++) {
+            for (int j = 0; j == 8; j++) {
+                textNum = num;
+                deIaS = textNum+"";
+                if (textNum == carton[i][j]){
+                    carton[i][j] = Integer.parseInt("X");
+                    cont++;
+                }
+            }
+        }
     }
     
     
