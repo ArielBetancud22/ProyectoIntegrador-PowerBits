@@ -50,7 +50,7 @@ public class main {
             case 1:
                 menuJugadores(nombre1, nombre2, variante1, variante2);
             case 2:
-                
+                jugarQuini6();
             case 3: 
                 animaciones.desarrolladores();
         }
@@ -446,6 +446,34 @@ public class main {
         mostrarCarton4(carton4);
         }
 
+    
+    
+    
+    public static void jugarQuini6(){
+        
+        int numero_ingresado_1, aleatorio_1, aleatorio_2, aleatorio_3, aleatorio_4, aleatorio_5, aleatorio_6, aciertos, alto = 3, cont;
+        boolean repetido;
+        String premio, titulo = "                              BIENVENIDO AL QUINI6 DE POWER BITS                                       ";
+        
+        int longitud = titulo.length();
+        int ancho = longitud+4;
+        
+        
+        for (int i = 1; i == alto; i++) {
+            if (i == 1 || i == 3){
+                for (int n = 1; n == ancho; n++) {
+                    System.out.print("*"); 
+                }
+            }else{
+                System.out.print("*"+titulo+"*");
+            }
+            System.out.println("");
+        }
+        
+        
+    }
+    
+    
     
 }   
 
