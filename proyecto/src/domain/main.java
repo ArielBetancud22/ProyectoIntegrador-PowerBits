@@ -451,26 +451,94 @@ public class main {
     
     public static void jugarQuini6(){
         
-        int numero_ingresado_1, aleatorio_1, aleatorio_2, aleatorio_3, aleatorio_4, aleatorio_5, aleatorio_6, aciertos, alto = 3, cont;
-        boolean repetido;
-        String premio, titulo = "                              BIENVENIDO AL QUINI6 DE POWER BITS                                       ";
+        Scanner entrada = new Scanner(System.in);
         
-        int longitud = titulo.length();
-        int ancho = longitud+4;
+        System.out.println("\n                              BIENVENIDO AL QUINI6 DE POWER BITS                                       ");
+        int aleatorio1 = (int)(Math.random()*((50-1)));
+        int aleatorio2 = (int)(Math.random()*((50-1)));
+        int aleatorio3 = (int)(Math.random()*((50-1)));
+        int aleatorio4 = (int)(Math.random()*((50-1)));
+        int aleatorio5 = (int)(Math.random()*((50-1)));
+        int aleatorio6 = (int)(Math.random()*((50-1)));
         
+        int arreglo[] = new int[6];
+        int numero;
         
-        for (int i = 1; i == alto; i++) {
-            if (i == 1 || i == 3){
-                for (int n = 1; n == ancho; n++) {
-                    System.out.print("*"); 
-                }
+        System.out.println("- Ingrese un numero entre 1 y 50: ");
+        for (int i = 0; i < 6; i++) {
+            
+            System.out.print("- Numero "+(i+1)+": ");
+            numero = Integer.parseInt(entrada.nextLine());
+            
+            if (numero > 0 && numero <= 50){
+                arreglo[i] = numero;
+                
+                
             }else{
-                System.out.print("*"+titulo+"*");
+                System.out.println("- Numero fuera de rango, ingrese otro numero");
+                i -= 1;
             }
-            System.out.println("");
+         
+        }
+        
+        int contador = 0;
+        
+        for (int i = 0; i < 6; i++) {
+            if (arreglo[i] == aleatorio1){
+                contador += 1;
+            }
+        }
+        for (int i = 0; i < 6; i++) {
+            if (arreglo[i] == aleatorio2){
+                contador += 1;
+            }
+        }
+        for (int i = 0; i < 6; i++) {
+            if (arreglo[i] == aleatorio3){
+                contador += 1;
+            }
+        }
+        for (int i = 0; i < 6; i++) {
+            if (arreglo[i] == aleatorio4){
+                contador += 1;
+            }
+        }
+        for (int i = 0; i < 6; i++) {
+            if (arreglo[i] == aleatorio5){
+                contador += 1;
+            }
+        }
+        for (int i = 0; i < 6; i++) {
+            if (arreglo[i] == aleatorio6){
+                contador += 1;
+            }
+        }
+        
+        String premio = "";
+        switch (contador){
+            case 0:
+                premio = "La proxima será";
+            case 1:
+                premio = "Mouse inalámbrico";
+            case 2:
+                premio = "Auriculares con Microfono";
+            case 3:
+                premio = "Monitor 144hz";
+            case 4: 
+                premio = "Silla Gamer";
+            case 5:
+                premio = "Pc Gamer";
+            case 6: 
+                premio = "Pc Gamer + Periféricos";
         }
         
         
+        
+        System.out.print("- Los numeros aleatorios son: ");
+        System.out.println("|"+aleatorio1+"| "+" |"+aleatorio2+"| "+" |"+aleatorio3+"| "+" |"+aleatorio4+"| "+" |"+aleatorio5+"| "+" |"+aleatorio6+"|");
+        System.out.println("\n- Las coincidencias son: "+contador);
+        System.out.println("- Su premio es: "+premio);
+       
     }
     
     
