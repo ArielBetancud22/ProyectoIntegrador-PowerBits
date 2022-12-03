@@ -2,20 +2,20 @@
 package domain;
 
 import static domain.animaciones.bienvenidos;
+import static domain.animaciones.desarrolladores;
 import static domain.animaciones.esperar;
-import java.util.Scanner;
+import static domain.animaciones.teclaSeguir;
 
+import java.util.Scanner;
 
 public class main {
     
     public static void main(String[] args) {
-       bienvenidos();
-       animaciones.teclaSeguir();
+       //bienvenidos();
+       //animaciones.teclaSeguir();
        menu();
-       
     }
-    
-    
+
     public static void menu(){
         
         Scanner entrada = new Scanner(System.in);
@@ -36,10 +36,11 @@ public class main {
             System.out.println("                                        1- Jugar Loteria");
             System.out.println("                                        2- Jugar Quini6");
             System.out.println("                                        3- Salir");
+            System.out.println("                                        4- Desarrolladores");
             System.out.println("");
             System.out.print("                                        - Ingrese una opcion: ");
         opcion = Integer.parseInt(entrada.nextLine());
-        }while(opcion > 3 || opcion < 1);
+        }while(opcion > 4 || opcion < 1);
 
         
         System.out.println("");
@@ -49,10 +50,18 @@ public class main {
         switch(opcion){
             case 1:
                 menuJugadores(nombre1, nombre2, variante1, variante2);
+                break;
             case 2:
                 jugarQuini6();
+                break;
             case 3: 
-                animaciones.desarrolladores();
+                esperar(1);
+                System.out.println("                                                                   -> HASTA PRONTO <-"); 
+                break;
+            case 4: 
+                esperar(1);
+                desarrolladores();
+                menu();
         }
 
     }
@@ -451,98 +460,123 @@ public class main {
     
     public static void jugarQuini6(){
         
-        Scanner entrada = new Scanner(System.in);
-        
-        System.out.println("\n                              BIENVENIDO AL QUINI6 DE POWER BITS                                       ");
-        int aleatorio1 = (int)(Math.random()*((50-1)));
-        int aleatorio2 = (int)(Math.random()*((50-1)));
-        int aleatorio3 = (int)(Math.random()*((50-1)));
-        int aleatorio4 = (int)(Math.random()*((50-1)));
-        int aleatorio5 = (int)(Math.random()*((50-1)));
-        int aleatorio6 = (int)(Math.random()*((50-1)));
-        
-        int arreglo[] = new int[6];
-        int numero;
-        
-        System.out.println("- Ingrese un numero entre 1 y 50: ");
-        for (int i = 0; i < 6; i++) {
+    Scanner entrada = new Scanner(System.in); 
+    
+    //--------------------------------------------------------------------------
+    // Parte bienvenidos al quini
+    System.out.println("                                                                    Q U I N I - 6");
+    
+    //--------------------------------------------------------------------------
+    // Creamos el arreglo que tendra los numeros aleatorios sin repetir
+    
+    int aleatorios[] = new int[6];  // iniciamos el arreglo
+    
+
+    for (int i = 0; i < 6; i++) {   // iniciamos el primer ciclo for, este hace 6 veces el recorrido
+
+        boolean encontrado = false; // usamos una variable como bandera
+
+        int aleatorio = (int) (Math.random() * 49) + 1; // le asignamos un numero aleatorio a la variable
+
+        for (int j = 0; j < i; j++) {   // segundo ciclo for, este verifica que no se repitan los numeros generados al azar
+            if (aleatorios[j] == aleatorio) {   // se recorre todo el arreglo, y si el numero aleatorio esta repetido
+                encontrado = true;  // la bandera pasa a ser verdadera
+            }
+        }
+        if (!encontrado) {
+            aleatorios[i] = aleatorio; // aca se guardan los numeros sin repetir
+        }else{                         // para despues poder mostrarlos
+            i--;
+        }
+    }
+    //--------------------------------------------------------------------------
+    // Parte donde el usuario ingresa los numeros que eligio
+    
+    int numeros[] = new int[6];
+    int numero;
+    System.out.println("");
+    System.out.println("");
+    System.out.println(" - Digite sus numeros elegidos");
+    for (int i = 0; i < 6; i++) {
+        System.out.print(" - Numero "+(i+1)+": ");
+        numero = entrada.nextInt();
             
-            System.out.print("- Numero "+(i+1)+": ");
-            numero = Integer.parseInt(entrada.nextLine());
-            
-            if (numero > 0 && numero <= 50){
-                arreglo[i] = numero;
-                
-                
-            }else{
-                System.out.println("- Numero fuera de rango, ingrese otro numero");
-                i -= 1;
-            }
-         
+        if (numero < 0 || numero > 50){ // si el numero esta fuera de rango no ingresa al arreglo y el iterador retrocede uno
+            System.out.println("Fuera de rango, ingrese otro numero...");
+            i --;
+        }else{
+            numeros[i] = numero;// cada numero ingresado por el usuario
+                                // es guardado en el arreglo
         }
-        
-        int contador = 0;
-        
-        for (int i = 0; i < 6; i++) {
-            if (arreglo[i] == aleatorio1){
-                contador += 1;
-            }
-        }
-        for (int i = 0; i < 6; i++) {
-            if (arreglo[i] == aleatorio2){
-                contador += 1;
-            }
-        }
-        for (int i = 0; i < 6; i++) {
-            if (arreglo[i] == aleatorio3){
-                contador += 1;
-            }
-        }
-        for (int i = 0; i < 6; i++) {
-            if (arreglo[i] == aleatorio4){
-                contador += 1;
-            }
-        }
-        for (int i = 0; i < 6; i++) {
-            if (arreglo[i] == aleatorio5){
-                contador += 1;
-            }
-        }
-        for (int i = 0; i < 6; i++) {
-            if (arreglo[i] == aleatorio6){
-                contador += 1;
-            }
-        }
-        
-        String premio = "";
-        switch (contador){
-            case 0:
-                premio = "La proxima será";
-            case 1:
-                premio = "Mouse inalámbrico";
-            case 2:
-                premio = "Auriculares con Microfono";
-            case 3:
-                premio = "Monitor 144hz";
-            case 4: 
-                premio = "Silla Gamer";
-            case 5:
-                premio = "Pc Gamer";
-            case 6: 
-                premio = "Pc Gamer + Periféricos";
-        }
-        
-        
-        
-        System.out.print("- Los numeros aleatorios son: ");
-        System.out.println("|"+aleatorio1+"| "+" |"+aleatorio2+"| "+" |"+aleatorio3+"| "+" |"+aleatorio4+"| "+" |"+aleatorio5+"| "+" |"+aleatorio6+"|");
-        System.out.println("\n- Las coincidencias son: "+contador);
-        System.out.println("- Su premio es: "+premio);
-       
+                                
+                                
     }
     
+    //--------------------------------------------------------------------------
+    // Ahora vemos si hay repetidos en los dos arreglos
+    
+    int cont = 0;
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 6; j++) {
+            if (numeros[i]==aleatorios[j]){
+                cont += 1;
+            }
+        }
+    }
+    //--------------------------------------------------------------------------
+    // Mostramos los numeros premiados y el premio del jugador
+    esperar(2);
+    System.out.println("");
+    System.out.println("-------------------------");
+    System.out.println("--> NUMEROS PREMIADOS <--");
+    for (int i = 0; i < 6; i++) {
+        System.out.print(" "+aleatorios[i]+" ");
+    } 
+    System.out.println("");
+    System.out.println("-------------------------");
+    esperar(1);
+    System.out.println("");
+    System.out.println("- La cantidad de coincidencias son: "+cont);
+    System.out.println("");
+        
+    //--------------------------------------------------------------------------    
+    // Parte donde se asignan los premios segun la cantidad de coincidencias
+    
+    if (cont != 0){
+        switch (cont){
+            case 1:
+                System.out.println("--> Su premio es un Mouse inalámbrico <--");
+                break;
+            case 2:
+                System.out.println("--> Su premio son unos Auriculares con Microfono <--");
+                break;
+            case 3:
+                System.out.println("--> Su premio es un Monitor 144hz <--");
+                break;
+            case 4: 
+                System.out.println("--> Su premo es una Silla Gamer <--");
+                break;
+            case 5:
+                System.out.println("--> Su premo es una Pc Gamer <--");
+                break;
+            case 6: 
+                System.out.println("--> Su premio es una Pc Gamer + Periféricos <--");
+                break;
+            }
+    }else{
+        esperar(2);
+        System.out.println("------------------------------------");
+        System.out.println("Lo sentimos, no obtuvo ningun premio");
+        System.out.println("         La proxima sera :)");
+        System.out.println("------------------------------------");
+        }
+    esperar(2);
+    teclaSeguir();  // llamamos al metodo seguir para que
+    menu();         // lo lleve de nuevo al manu principal 
+    //--------------------------------------------------------------------------
     
     
+    }  
 }   
 
 
