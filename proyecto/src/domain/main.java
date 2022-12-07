@@ -2,6 +2,7 @@
 package domain;
 
 import static domain.animaciones.bienvenidos;
+import static domain.animaciones.cartonLleno;
 import static domain.animaciones.desarrolladores;
 import static domain.animaciones.esperar;
 import static domain.animaciones.teclaSeguir;
@@ -46,7 +47,7 @@ public class main {
             System.out.println("");
             System.out.print("                                        - Ingrese una opcion: ");
         opcion = Integer.parseInt(entrada.nextLine());
-        }while(opcion > 3 || opcion < 1);
+        }while(opcion > 4 || opcion < 1);
 
         
         System.out.println("");
@@ -64,6 +65,13 @@ public class main {
                 teclaSeguir();
                 esperar(1);
                 menu();
+            case 4:
+                esperar(1);
+                System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.println("                                                          - - - H A S T A  P R O N T O - - -");
+                esperar(1);
+                System.out.println("\n                                                                      PowerBits");
+                System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         }
 
     }
@@ -111,7 +119,9 @@ public class main {
             case 3:
                 sortear(nombre1, nombre2);
                 animaciones.teclaSeguir();
-                menuJugadores(nombre1, nombre2);
+                menu();
+            case 4:
+                menu();
 
         } 
         
@@ -280,13 +290,18 @@ public class main {
 
             if(cont_carton1 == 15){
                 System.out.flush();
-                System.out.println("Falta animacion carton lleno");
+                
+                animaciones.cartonLleno();
+                System.out.println("");
+                System.out.println("                                           FELICITACIONES "+nombre1+" HAS GANADO EL JUEGO");
                 cartonLleno = true;
             }
             
             if(cont_carton2 == 15){
                 System.out.flush();
-                System.out.println("Falta animacion carton lleno");
+                animaciones.cartonLleno();
+                System.out.println("");
+                System.out.println("                                           FELICITACIONES "+nombre2+" HAS GANADO EL JUEGO");
                 cartonLleno = true;
             }
         }while(cartonLleno == false);
@@ -365,18 +380,11 @@ public class main {
         }
     }
 
-    
-    
-    
-    
-    
-    
-    
     public static void armadoCarton1(String[][] carton1){
         
         carton1[0][0] = " 1"; carton1[0][1] = "0"; carton1[0][2] = "0"; carton1[0][3] = "31"; carton1[0][4] = "0"; carton1[0][5] = "57"; carton1[0][6] = "65"; carton1[0][7] = "0"; carton1[0][8] = "88"; 
         carton1[1][0] = "0"; carton1[1][1] = "12"; carton1[1][2] = "0"; carton1[1][3] = "35"; carton1[1][4] = "47"; carton1[1][5] = "0"; carton1[1][6] = "0"; carton1[1][7] = "75"; carton1[1][8] = "0";
-        carton1[2][0] = " 8"; carton1[2][1] = "19"; carton1[2][2] = "0"; carton1[2][3] = "0"; carton1[2][4] = "48"; carton1[2][5] = "0"; carton1[2][6] = "67"; carton1[2][7] = "76"; carton1[2][8] = "0"; 
+        carton1[2][0] = " 8"; carton1[2][1] = "19"; carton1[2][2] = "0"; carton1[2][3] = "0"; carton1[2][4] = "48"; carton1[2][5] = "0"; carton1[2][6] = "67"; carton1[2][7] = "76"; carton1[2][8] = "90"; 
     }
     public static void mostrarCarton1(String[][] carton1) {
         System.out.println("");
@@ -406,7 +414,7 @@ public class main {
     
     public static void armadoCarton2(String[][] carton2){
 
-        carton2[0][0] = " 1"; carton2[0][1] = "0"; carton2[0][2] = "23"; carton2[0][3] = "0"; carton2[0][4] = "45"; carton2[0][5] = "0"; carton2[0][6] = "61"; carton2[0][7] = "0"; carton2[0][8] = "0"; 
+        carton2[0][0] = " 1"; carton2[0][1] = "0"; carton2[0][2] = "23"; carton2[0][3] = "0"; carton2[0][4] = "45"; carton2[0][5] = "0"; carton2[0][6] = "61"; carton2[0][7] = "0"; carton2[0][8] = "82"; 
         carton2[1][0] = "0"; carton2[1][1] = "14"; carton2[1][2] = "0"; carton2[1][3] = "37"; carton2[1][4] = "49"; carton2[1][5] = "0"; carton2[1][6] = "69"; carton2[1][7] = "70"; carton2[1][8] = "0";
         carton2[2][0] = " 4"; carton2[2][1] = "0"; carton2[2][2] = "28"; carton2[2][3] = "0"; carton2[2][4] = "0"; carton2[2][5] = "55"; carton2[2][6] = "0"; carton2[2][7] = "78"; carton2[2][8] = "87";
     }
@@ -444,7 +452,7 @@ public class main {
     public static void armadoCarton3(String[][] carton3){
         carton3[0][0] = "0"; carton3[0][1] = "0"; carton3[0][2] = "22"; carton3[0][3] = "0"; carton3[0][4] = "40"; carton3[0][5] = "50"; carton3[0][6] = "0"; carton3[0][7] = "71"; carton3[0][8] = "0"; 
         carton3[1][0] = " 6"; carton3[1][1] = "0"; carton3[1][2] = "29"; carton3[1][3] = "30"; carton3[1][4] = "0"; carton3[1][5] = "54"; carton3[1][6] = "0"; carton3[1][7] = "0"; carton3[1][8] = "81";
-        carton3[2][0] = " 7"; carton3[2][1] = "16"; carton3[2][2] = "0"; carton3[2][3] = "34"; carton3[2][4] = "46"; carton3[2][5] = "0"; carton3[2][6] = "66"; carton3[2][7] = "0"; carton3[2][8] = "0";
+        carton3[2][0] = " 7"; carton3[2][1] = "16"; carton3[2][2] = "0"; carton3[2][3] = "34"; carton3[2][4] = "46"; carton3[2][5] = "0"; carton3[2][6] = "66"; carton3[2][7] = "0"; carton3[2][8] = "90";
     }
     
     public static void mostrarCarton3(String[][]  carton3) {
@@ -477,7 +485,7 @@ public class main {
     
     
     public static void armadoCarton4(String[][] carton4){
-        carton4[0][0] = "0"; carton4[0][1] = "11"; carton4[0][2] = "0"; carton4[0][3] = "36"; carton4[0][4] = "43"; carton4[0][5] = "0"; carton4[0][6] = "64"; carton4[0][7] = "73"; carton4[0][8] = "0"; 
+        carton4[0][0] = "0"; carton4[0][1] = "11"; carton4[0][2] = "0"; carton4[0][3] = "36"; carton4[0][4] = "43"; carton4[0][5] = "0"; carton4[0][6] = "64"; carton4[0][7] = "73"; carton4[0][8] = "83"; 
         carton4[1][0] = "0"; carton4[1][1] = "13"; carton4[1][2] = "21"; carton4[1][3] = "0"; carton4[1][4] = "0"; carton4[1][5] = "51"; carton4[1][6] = "0"; carton4[1][7] = "77"; carton4[1][8] = "0";
         carton4[2][0] = " 5"; carton4[2][1] = "0"; carton4[2][2] = "26"; carton4[2][3] = "0"; carton4[2][4] = "44"; carton4[2][5] = "56"; carton4[2][6] = "0"; carton4[2][7] = "0"; carton4[2][8] = "86";
     }

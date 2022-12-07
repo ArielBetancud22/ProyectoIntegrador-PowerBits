@@ -25,6 +25,26 @@ public class animaciones {
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
     }
     
+    public static void cartonLleno(){
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("                                    3     3   3          3  3         3        3   3        3 ");
+        System.out.println("                                     3    3         3          3       3      3     3      3");
+        System.out.println("                                                ---------------------------");
+        System.out.println("                                   3   3     3    C A R T O N   L L E N O       3      3     3");
+        System.out.println("                                                ---------------------------");
+        System.out.println("                                     3    3      3         3          3         3     3      3");
+        System.out.println("                                        3    3        3        3          3         3   3");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+       
+    }
     
     public static void desarrolladores(){
         System.out.println("                                                   ----------------------------------------------");
