@@ -2,10 +2,10 @@
 package domain;
 
 import static domain.animaciones.bienvenidos;
+import static domain.animaciones.desarrolladores;
 import static domain.animaciones.esperar;
 import static domain.animaciones.teclaSeguir;
 import java.util.Scanner;
-
 
 public class main {
     
@@ -35,13 +35,14 @@ public class main {
         
         
         do{
-            System.out.println("");
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("");
             System.out.println("                                                      - - - M E N U   D E   O P C I O N E S - - -");
             System.out.println("");
             System.out.println("                                        1- Jugar Loteria");
             System.out.println("                                        2- Jugar Quini6");
-            System.out.println("                                        3- Salir");
+            System.out.println("                                        3- Desarrolladores");
+            System.out.println("                                        4- Salir");
             System.out.println("");
             System.out.print("                                        - Ingrese una opcion: ");
         opcion = Integer.parseInt(entrada.nextLine());
@@ -50,13 +51,19 @@ public class main {
         
         System.out.println("");
         System.out.println("");
-        
+          
         
         switch(opcion){
             case 1:
                 menuJugadores(nombre1, nombre2);
             case 2: 
                 jugarQuini6();
+            case 3: 
+                desarrolladores();
+                esperar(1);
+                teclaSeguir();
+                esperar(1);
+                menu();
         }
 
     }
@@ -67,7 +74,7 @@ public class main {
         Scanner entrada = new Scanner(System.in); 
         
         int eleccion;
- 
+        System.out.println("                              ------------------------------------------------------------------------------------");
         System.out.println("                                                                    L O T E R I A");
         System.out.println("");
         System.out.println("                                        1- Ingrese el nombre de los jugadores");
@@ -111,74 +118,108 @@ public class main {
         
     }
     
-    public void seleccionCartones(String nombre1, String nombre2){
-        Scanner entrada = new Scanner(System.in); 
-        
+    public void seleccionCartones(String nombre1, String nombre2) {
+        Scanner entrada = new Scanner(System.in);
+
         int cartonElegido = 0;
         System.out.println("                     ------------------------------------------------------------------------------------");
-        carton_1(); carton_2(); carton_3(); carton_4();
-        
-        System.out.print("                                       - "+nombre1+" seleccione el numero de carton que desee: ");
+        carton_1();
+        carton_2();
+        carton_3();
+        carton_4();
+
+        System.out.print("                                       - " + nombre1 + " seleccione el numero de carton que desee: ");
         variante1 = Integer.parseInt(entrada.nextLine());
         this.variante1 = variante1;
         System.out.println("                     ------------------------------------------------------------------------------------");
-        switch (variante1) {
-            case 1:
-                System.out.println("                                        " + nombre1 + " selecciono:");
-                carton_1();
-                cartonElegido = 1;
-                break;
-            case 2:
-                System.out.println("                                        " + nombre1 + " selecciono:");
-                carton_2();
-                cartonElegido = 2;
-                break;
-            case 3:
-                System.out.println("                                        " + nombre1 + " selecciono:");
-                carton_3();
-                cartonElegido = 3;
-                break;
-            case 4:
-                System.out.println("                                        " + nombre1 + " selecciono:");
-                carton_4();
-                cartonElegido = 4;
-                break;
+
+        if (variante1 < 5 && variante1 > 0) {
+            switch (variante1) {
+                case 1:
+                    System.out.println("                                        " + nombre1 + " selecciono:");
+                    carton_1();
+                    cartonElegido = 1;
+                    break;
+                case 2:
+                    System.out.println("                                        " + nombre1 + " selecciono:");
+                    carton_2();
+                    cartonElegido = 2;
+                    break;
+                case 3:
+                    System.out.println("                                        " + nombre1 + " selecciono:");
+                    carton_3();
+                    cartonElegido = 3;
+                    break;
+                case 4:
+                    System.out.println("                                        " + nombre1 + " selecciono:");
+                    carton_4();
+                    cartonElegido = 4;
+                    break;
+            }
+        } else {
+            System.out.println("                          Digito una opcion incorrecta de carton, ingrese otra por favor...");
+            seleccionCartones(nombre1, nombre2);
         }
         System.out.println("                     ------------------------------------------------------------------------------------");
-        if (cartonElegido == 1){
-            carton_2(); carton_3(); carton_4();
+
+        if (cartonElegido == 1) {
+            carton_2();
+            carton_3();
+            carton_4();
         } else if (cartonElegido == 2) {
-            carton_1(); carton_3(); carton_4();
+            carton_1();
+            carton_3();
+            carton_4();
         } else if (cartonElegido == 3) {
-            carton_1(); carton_2(); carton_4();
+            carton_1();
+            carton_2();
+            carton_4();
         } else if (cartonElegido == 4) {
-            carton_1(); carton_2(); carton_3();
-        }
-        System.out.print("                                       - "+nombre2+" seleccione el numero de carton que desee: ");
-        variante2 = Integer.parseInt(entrada.nextLine());
-        this.variante2 = variante2;
-        System.out.println("                     ------------------------------------------------------------------------------------");
-        switch (variante2) {
-            case 1:
-                System.out.println("                                        " + nombre2 + " selecciono:");
-                carton_1();
-                break;
-            case 2:
-                System.out.println("                                        " + nombre2 + " selecciono:");
-                carton_2();
-                break;
-            case 3:
-                System.out.println("                                        " + nombre2 + " selecciono:");
-                carton_3();
-                break;
-            case 4:
-                System.out.println("                                        " + nombre2 + " selecciono:");
-                carton_4();
-                break;
+            carton_1();
+            carton_2();
+            carton_3();
         }
 
-    }
+        boolean bandera;
+        do {
+
+            System.out.print("                                       - " + nombre2 + " seleccione el numero de carton que desee: ");
+            variante2 = Integer.parseInt(entrada.nextLine());
+            this.variante2 = variante2;
+            System.out.println("                     ------------------------------------------------------------------------------------");
+
+            if (variante2 < 5 && variante2 > 0 && variante2 != variante1) {
+                switch (variante2) {
+                    case 1:
+                        System.out.println("                                        " + nombre2 + " selecciono:");
+                        carton_1();
+                        break;
+                    case 2:
+                        System.out.println("                                        " + nombre2 + " selecciono:");
+                        carton_2();
+                        break;
+                    case 3:
+                        System.out.println("                                        " + nombre2 + " selecciono:");
+                        carton_3();
+                        break;
+                    case 4:
+                        System.out.println("                                        " + nombre2 + " selecciono:");
+                        carton_4();
+                        break;
+                }
+                bandera = true;
+                break;
+            }else{
+                System.out.println("                          Digito una opcion incorrecta de carton, ingrese otra por favor...");
+                System.out.println("                     ------------------------------------------------------------------------------------");
+                bandera = false;
+            }
+            
+            break;
+        }while (bandera = true);
     
+    }
+
     public void sortear(String nombre1, String nombre2){
         boolean cartonLleno = false;
         int cont_carton1 = 0, cont_carton2 = 0, nro_sorteado;
@@ -200,17 +241,17 @@ public class main {
             for(int i=0; i<=2; i++){
                 for(int j=0; j<8; j++){
                     if(Integer.toString(nro_sorteado).equals(carton1[i][j].replaceAll("\\s", ""))){
-                        carton1[i][j] = "X";
+                        carton1[i][j] = " X";
                         cont_carton1++;
                     }
                     if(Integer.toString(nro_sorteado).equals(carton2[i][j].replaceAll("\\s", ""))){
-                        carton2[i][j] = "X";
+                        carton2[i][j] = " X";
                         cont_carton2++;
                     }
                 }
             }
-            
-            System.out.println("           "+nombre1);
+            System.out.println("");
+            System.out.println("\n           "+nombre1);
             System.out.println("");
             mostrarCartonPorVariante(variante1,carton1);
             System.out.println("            "+nombre2);
@@ -258,8 +299,9 @@ public class main {
             
             System.out.println("NRO SORTEADO: " + nro_sorteado);
             
+            System.out.println("\nCOMPARA: ");
             for(int j=1; j <= this.cont; j++) {
-                System.out.println("COMPARA " + this.nros[j]);
+                System.out.print(" " + this.nros[j]+ " ");
                 if (nro_sorteado == this.nros[j]) {
                     repetido=true; 
                 }                
