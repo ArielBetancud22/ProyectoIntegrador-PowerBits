@@ -10,12 +10,21 @@ public class animaciones {
    
     
     public static void bienvenidos(){
-        System.out.println("           o o o       o o o     o o o     o     o    o       o    o o o    o     o    o o o     o o o         o o       o o o        ");
-        System.out.println("           o     o       o       o         o o   o     o     o     o        o o   o      o       o     o     o     o    o             ");
-        System.out.println("           o o o         o       o o o     o  o  o      o   o      o o o    o  o  o      o       o      o    o     o     o o o        ");
-        System.out.println("           o     o       o       o         o   o o       o o       o        o   o o      o       o     o     o     o          o       ");
-        System.out.println("           o o o       o o o     o o o     o     o        o        o o o    o     o    o o o     o o o         o o       o o o        ");
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+        esperar(1);
+        System.out.println("                o o o       o o o     o o o     o     o    o       o    o o o    o     o    o o o     o o o         o o       o o o                ");
+        esperar(1);
+        System.out.println("                o     o       o       o         o o   o     o     o     o        o o   o      o       o     o     o     o    o                     ");
+        esperar(1);
+        System.out.println("                o o o         o       o o o     o  o  o      o   o      o o o    o  o  o      o       o      o    o     o     o o o                ");
+        esperar(1);
+        System.out.println("                o     o       o       o         o   o o       o o       o        o   o o      o       o     o     o     o          o               ");
+        esperar(1);
+        System.out.println("                o o o       o o o     o o o     o     o        o        o o o    o     o    o o o     o o o         o o       o o o                ");
+        esperar(1);
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
     }
+    
     
     public static void desarrolladores(){
         System.out.println("                                                   ----------------------------------------------");
@@ -44,7 +53,7 @@ public class animaciones {
     public static void teclaSeguir() {
         String seguir;
         Scanner teclado = new Scanner(System.in);
-        System.out.println("Presione INTRO para seguir...");
+        System.out.print("\n\nPresione INTRO para seguir...");
         try {
             seguir = teclado.nextLine();
         } catch (Exception e) {

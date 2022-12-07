@@ -12,7 +12,7 @@ public class main {
     private int variante1;
     private int variante2;
     private int cont = 0;
-    private int nros[] = new int[90];
+    private int nros[] = new int[100];
 
     
     public static void main(String[] args) {
@@ -35,7 +35,7 @@ public class main {
         
         
         do{
-            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("");
             System.out.println("                                                      - - - M E N U   D E   O P C I O N E S - - -");
             System.out.println("");
@@ -122,16 +122,19 @@ public class main {
         Scanner entrada = new Scanner(System.in);
 
         int cartonElegido = 0;
-        System.out.println("                     ------------------------------------------------------------------------------------");
+        System.out.println("                              ------------------------------------------------------------------------------------");
         carton_1();
         carton_2();
         carton_3();
         carton_4();
-
+        System.out.println("");
+        System.out.println("");
         System.out.print("                                       - " + nombre1 + " seleccione el numero de carton que desee: ");
         variante1 = Integer.parseInt(entrada.nextLine());
+        System.out.println("");
+        System.out.println("");
         this.variante1 = variante1;
-        System.out.println("                     ------------------------------------------------------------------------------------");
+        System.out.println("                              ------------------------------------------------------------------------------------");
 
         if (variante1 < 5 && variante1 > 0) {
             switch (variante1) {
@@ -157,10 +160,10 @@ public class main {
                     break;
             }
         } else {
-            System.out.println("                          Digito una opcion incorrecta de carton, ingrese otra por favor...");
+            System.out.println("                                        Digito una opcion incorrecta de carton, ingrese otra por favor...");
             seleccionCartones(nombre1, nombre2);
         }
-        System.out.println("                     ------------------------------------------------------------------------------------");
+        System.out.println("                              ------------------------------------------------------------------------------------");
 
         if (cartonElegido == 1) {
             carton_2();
@@ -182,11 +185,14 @@ public class main {
 
         boolean bandera;
         do {
-
+            System.out.println("");
+            System.out.println("");
             System.out.print("                                       - " + nombre2 + " seleccione el numero de carton que desee: ");
             variante2 = Integer.parseInt(entrada.nextLine());
+            System.out.println("");
+            System.out.println("");
             this.variante2 = variante2;
-            System.out.println("                     ------------------------------------------------------------------------------------");
+            System.out.println("                              ------------------------------------------------------------------------------------");
 
             if (variante2 < 5 && variante2 > 0 && variante2 != variante1) {
                 switch (variante2) {
@@ -210,8 +216,8 @@ public class main {
                 bandera = true;
                 break;
             }else{
-                System.out.println("                          Digito una opcion incorrecta de carton, ingrese otra por favor...");
-                System.out.println("                     ------------------------------------------------------------------------------------");
+                System.out.println("                                        Digito una opcion incorrecta de carton, ingrese otra por favor...");
+                System.out.println("                              ------------------------------------------------------------------------------------");
                 bandera = false;
             }
             
@@ -239,7 +245,7 @@ public class main {
             nro_sorteado = obtenerSinRepetir();
             
             for(int i=0; i<=2; i++){
-                for(int j=0; j<8; j++){
+                for(int j=0; j<=8; j++){
                     if(Integer.toString(nro_sorteado).equals(carton1[i][j].replaceAll("\\s", ""))){
                         carton1[i][j] = " X";
                         cont_carton1++;
@@ -251,16 +257,17 @@ public class main {
                 }
             }
             System.out.println("");
-            System.out.println("\n           "+nombre1);
+            System.out.println("           [-> "+nombre1+" <-]");
             System.out.println("");
             mostrarCartonPorVariante(variante1,carton1);
-            System.out.println("            "+nombre2);
+            System.out.println("           [-> "+nombre2+" <-]");
             mostrarCartonPorVariante(variante2,carton2);
             System.out.println("");
             System.out.println("");
             System.out.println("                             El numero sorteado es: " + nro_sorteado);
             System.out.println("");
             
+            System.out.println("\n                                              -> LISTA DE NUMEROS YA SORTEADOS <-");
             for(int i=0; i<cont; i++){
                 if(this.nros[i] > 0){
                     System.out.print(" " + this.nros[i]);
@@ -277,7 +284,7 @@ public class main {
                 cartonLleno = true;
             }
             
-             if(cont_carton2 == 15){
+            if(cont_carton2 == 15){
                 System.out.flush();
                 System.out.println("Falta animacion carton lleno");
                 cartonLleno = true;
@@ -293,15 +300,15 @@ public class main {
         boolean repetido;
         
         for (int i = 1; i <= 1; i++) {
-            System.out.println("Contador: " + this.cont);
+//            System.out.println("Contador: " + this.cont);
             repetido = false;
-            nro_sorteado = (int) (Math.random()*90);
+            nro_sorteado = (int)(Math.random()*((90-0)+1));
             
-            System.out.println("NRO SORTEADO: " + nro_sorteado);
+//            System.out.println("NRO SORTEADO: " + nro_sorteado);
             
-            System.out.println("\nCOMPARA: ");
+//            System.out.println("\nCOMPARA: ");
             for(int j=1; j <= this.cont; j++) {
-                System.out.print(" " + this.nros[j]+ " ");
+//                System.out.print(" " + this.nros[j]+ " ");
                 if (nro_sorteado == this.nros[j]) {
                     repetido=true; 
                 }                
@@ -367,8 +374,8 @@ public class main {
     
     public static void armadoCarton1(String[][] carton1){
         
-        carton1[0][0] = "0"; carton1[0][1] = "0"; carton1[0][2] = "0"; carton1[0][3] = "31"; carton1[0][4] = "0"; carton1[0][5] = "57"; carton1[0][6] = "65"; carton1[0][7] = "0"; carton1[0][8] = "88"; 
-        carton1[1][0] = "0"; carton1[1][1] = "12"; carton1[1][2] = "0"; carton1[1][3] = "35"; carton1[1][4] = "47"; carton1[1][5] = "0"; carton1[1][6] = "0"; carton1[1][7] = "75"; carton1[1][8] = "90";
+        carton1[0][0] = " 1"; carton1[0][1] = "0"; carton1[0][2] = "0"; carton1[0][3] = "31"; carton1[0][4] = "0"; carton1[0][5] = "57"; carton1[0][6] = "65"; carton1[0][7] = "0"; carton1[0][8] = "88"; 
+        carton1[1][0] = "0"; carton1[1][1] = "12"; carton1[1][2] = "0"; carton1[1][3] = "35"; carton1[1][4] = "47"; carton1[1][5] = "0"; carton1[1][6] = "0"; carton1[1][7] = "75"; carton1[1][8] = "0";
         carton1[2][0] = " 8"; carton1[2][1] = "19"; carton1[2][2] = "0"; carton1[2][3] = "0"; carton1[2][4] = "48"; carton1[2][5] = "0"; carton1[2][6] = "67"; carton1[2][7] = "76"; carton1[2][8] = "0"; 
     }
     public static void mostrarCarton1(String[][] carton1) {
@@ -399,7 +406,7 @@ public class main {
     
     public static void armadoCarton2(String[][] carton2){
 
-        carton2[0][0] = " 1"; carton2[0][1] = "0"; carton2[0][2] = "23"; carton2[0][3] = "0"; carton2[0][4] = "45"; carton2[0][5] = "0"; carton2[0][6] = "61"; carton2[0][7] = "0"; carton2[0][8] = "82"; 
+        carton2[0][0] = " 1"; carton2[0][1] = "0"; carton2[0][2] = "23"; carton2[0][3] = "0"; carton2[0][4] = "45"; carton2[0][5] = "0"; carton2[0][6] = "61"; carton2[0][7] = "0"; carton2[0][8] = "0"; 
         carton2[1][0] = "0"; carton2[1][1] = "14"; carton2[1][2] = "0"; carton2[1][3] = "37"; carton2[1][4] = "49"; carton2[1][5] = "0"; carton2[1][6] = "69"; carton2[1][7] = "70"; carton2[1][8] = "0";
         carton2[2][0] = " 4"; carton2[2][1] = "0"; carton2[2][2] = "28"; carton2[2][3] = "0"; carton2[2][4] = "0"; carton2[2][5] = "55"; carton2[2][6] = "0"; carton2[2][7] = "78"; carton2[2][8] = "87";
     }
@@ -425,6 +432,7 @@ public class main {
             System.out.println("");
         }
         System.out.println("                                        ----------------------------------------------");
+        
      }
     
     
@@ -434,7 +442,7 @@ public class main {
     
     
     public static void armadoCarton3(String[][] carton3){
-        carton3[0][0] = "0"; carton3[0][1] = "0"; carton3[0][2] = "22"; carton3[0][3] = "0"; carton3[0][4] = "40"; carton3[0][5] = "50"; carton3[0][6] = "0"; carton3[0][7] = "71"; carton3[0][8] = "85"; 
+        carton3[0][0] = "0"; carton3[0][1] = "0"; carton3[0][2] = "22"; carton3[0][3] = "0"; carton3[0][4] = "40"; carton3[0][5] = "50"; carton3[0][6] = "0"; carton3[0][7] = "71"; carton3[0][8] = "0"; 
         carton3[1][0] = " 6"; carton3[1][1] = "0"; carton3[1][2] = "29"; carton3[1][3] = "30"; carton3[1][4] = "0"; carton3[1][5] = "54"; carton3[1][6] = "0"; carton3[1][7] = "0"; carton3[1][8] = "81";
         carton3[2][0] = " 7"; carton3[2][1] = "16"; carton3[2][2] = "0"; carton3[2][3] = "34"; carton3[2][4] = "46"; carton3[2][5] = "0"; carton3[2][6] = "66"; carton3[2][7] = "0"; carton3[2][8] = "0";
     }
@@ -470,7 +478,7 @@ public class main {
     
     public static void armadoCarton4(String[][] carton4){
         carton4[0][0] = "0"; carton4[0][1] = "11"; carton4[0][2] = "0"; carton4[0][3] = "36"; carton4[0][4] = "43"; carton4[0][5] = "0"; carton4[0][6] = "64"; carton4[0][7] = "73"; carton4[0][8] = "0"; 
-        carton4[1][0] = "0"; carton4[1][1] = "13"; carton4[1][2] = "21"; carton4[1][3] = "0"; carton4[1][4] = "0"; carton4[1][5] = "51"; carton4[1][6] = "0"; carton4[1][7] = "77"; carton4[1][8] = "84";
+        carton4[1][0] = "0"; carton4[1][1] = "13"; carton4[1][2] = "21"; carton4[1][3] = "0"; carton4[1][4] = "0"; carton4[1][5] = "51"; carton4[1][6] = "0"; carton4[1][7] = "77"; carton4[1][8] = "0";
         carton4[2][0] = " 5"; carton4[2][1] = "0"; carton4[2][2] = "26"; carton4[2][3] = "0"; carton4[2][4] = "44"; carton4[2][5] = "56"; carton4[2][6] = "0"; carton4[2][7] = "0"; carton4[2][8] = "86";
     }
     
@@ -537,7 +545,8 @@ public class main {
     
     //--------------------------------------------------------------------------
     // Parte bienvenidos al quini
-    System.out.println("                                                                    Q U I N I - 6");
+    System.out.println("                              ------------------------------------------------------------------------------------");
+    System.out.println("                                                                   Q U I N I - 6");
     
     //--------------------------------------------------------------------------
     // Creamos el arreglo que tendra los numeros aleatorios sin repetir
