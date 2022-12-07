@@ -8,21 +8,26 @@ import java.util.Scanner;
 
 public class main {
     
+    private int variante1;
+    private int variante2;
+    private int cont = 0;
+    private int nros[] = new int[90];
+
+    
     public static void main(String[] args) {
        bienvenidos();
        animaciones.teclaSeguir();
-       menu();
+       main me = new main();
+       me.menu();
+       
        
     }
     
-    
-    public static void menu(){
+    public void menu(){
         
         Scanner entrada = new Scanner(System.in);
         
-        int opcion; 
-        int variante1 = 0; 
-        int variante2 = 0;
+        int opcion;
         
         String nombre1 = " ";
         String nombre2 = " ";
@@ -48,14 +53,14 @@ public class main {
         
         switch(opcion){
             case 1:
-                menuJugadores(nombre1, nombre2, variante1, variante2);
+                menuJugadores(nombre1, nombre2);
                 
         }
 
     }
     
     
-    public static void menuJugadores(String nombre1, String nombre2, int variante1, int variante2){
+    public void menuJugadores(String nombre1, String nombre2){
         
         Scanner entrada = new Scanner(System.in); 
         
@@ -90,18 +95,21 @@ public class main {
                 System.out.println("");
                 animaciones.teclaSeguir();
                 System.out.println("");
+                menuJugadores(nombre1, nombre2);
             case 2:
-                seleccionCartones(nombre1, nombre2, variante1, variante2);
-                
+                seleccionCartones(nombre1, nombre2);
+                menuJugadores(nombre1, nombre2);                
             case 3:
-                
-        }
+                sortear(nombre1, nombre2);
+                animaciones.teclaSeguir();
+                menuJugadores(nombre1, nombre2);
+
+        } 
+        
         
     }
-    public static void seleccionCartones(){
-        
-    }
-    public static void seleccionCartones(String nombre1, String nombre2, int variante1, int variante2){
+    
+    public void seleccionCartones(String nombre1, String nombre2){
         Scanner entrada = new Scanner(System.in); 
         
         int cartonElegido = 0;
@@ -110,6 +118,7 @@ public class main {
         
         System.out.print("                                       - "+nombre1+" seleccione el numero de carton que desee: ");
         variante1 = Integer.parseInt(entrada.nextLine());
+        this.variante1 = variante1;
         System.out.println("                     ------------------------------------------------------------------------------------");
         switch (variante1) {
             case 1:
@@ -145,6 +154,7 @@ public class main {
         }
         System.out.print("                                       - "+nombre2+" seleccione el numero de carton que desee: ");
         variante2 = Integer.parseInt(entrada.nextLine());
+        this.variante2 = variante2;
         System.out.println("                     ------------------------------------------------------------------------------------");
         switch (variante2) {
             case 1:
@@ -167,12 +177,12 @@ public class main {
 
     }
     
-    public static void sortear(int variante1, int variante2, String nombre1, String nombre2){
+    public void sortear(String nombre1, String nombre2){
         boolean cartonLleno = false;
-        int cont = 0, cont_carton1 = 0, cont_carton2 = 0;
+        int cont_carton1 = 0, cont_carton2 = 0, nro_sorteado;
         
-        
-        int nros[] = new int[90];
+        int variante1 = this.variante1;
+        int variante2 = this.variante2;
         String carton1[][] = new String[3][9];
         String carton2[][] = new String[3][9];
         
@@ -182,24 +192,88 @@ public class main {
         do{
             System.out.println("");
             System.out.println("");
-            System.out.println("                               Pulse una tecla para sortear el numero");
-            System.out.println("FALTA ESPERAR TECLA");
+            animaciones.teclaSeguir();
+            nro_sorteado = obtenerSinRepetir();
             
+            for(int i=0; i<=2; i++){
+                for(int j=0; j<8; j++){
+                    if(Integer.toString(nro_sorteado).equals(carton1[i][j].replaceAll("\\s", ""))){
+                        carton1[i][j] = "X";
+                        cont_carton1++;
+                    }
+                    if(Integer.toString(nro_sorteado).equals(carton2[i][j].replaceAll("\\s", ""))){
+                        carton2[i][j] = "X";
+                        cont_carton2++;
+                    }
+                }
+            }
             
+            System.out.println("           "+nombre1);
+            System.out.println("");
+            mostrarCartonPorVariante(variante1,carton1);
+            System.out.println("            "+nombre2);
+            mostrarCartonPorVariante(variante2,carton2);
+            System.out.println("");
+            System.out.println("");
+            System.out.println("                             El numero sorteado es: " + nro_sorteado);
+            System.out.println("");
             
-        }while(cartonLleno == true);
+            for(int i=0; i<cont; i++){
+                if(this.nros[i] > 0){
+                    System.out.print(" " + this.nros[i]);
+                }
+                if (i == 45) {
+                    System.out.println("");
+                }
+            }
+            System.out.println("");
+
+            if(cont_carton1 == 15){
+                System.out.flush();
+                System.out.println("Falta animacion carton lleno");
+                cartonLleno = true;
+            }
+            
+             if(cont_carton2 == 15){
+                System.out.flush();
+                System.out.println("Falta animacion carton lleno");
+                cartonLleno = true;
+            }
+        }while(cartonLleno == false);
         
     }
     
     
-    public static void obtenerSinRepetir(int[] nros, int cont, int nro_sorteado){
-        boolean repetido = false;
+    public int obtenerSinRepetir(){
+
+        int nro_sorteado = 0;
+        boolean repetido;
         
-        for (int i = 1; i < 1; i++) {
+        for (int i = 1; i <= 1; i++) {
+            System.out.println("Contador: " + this.cont);
+            repetido = false;
+            nro_sorteado = (int) (Math.random()*90);
             
+            System.out.println("NRO SORTEADO: " + nro_sorteado);
+            
+            for(int j=1; j <= this.cont; j++) {
+                System.out.println("COMPARA " + this.nros[j]);
+                if (nro_sorteado == this.nros[j]) {
+                    repetido=true; 
+                }                
+            }
+            
+            
+            if (repetido == true) {
+                i--;
+            } else {
+                this.nros[this.cont] = nro_sorteado;
+                this.cont++;
+                this.nros[this.cont] = 0;
+            }
         }
         
-         
+        return nro_sorteado;
     }
     
     
