@@ -20,9 +20,7 @@ public class main {
        bienvenidos();
        animaciones.teclaSeguir();
        main me = new main();
-       me.menu();
-       
-       
+       me.menu(); 
     }
     
     public void menu(){
@@ -73,9 +71,7 @@ public class main {
                 System.out.println("\n                                                                      PowerBits");
                 System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         }
-
     }
-    
     
     public void menuJugadores(String nombre1, String nombre2){
         
@@ -122,10 +118,7 @@ public class main {
                 menu();
             case 4:
                 menu();
-
-        } 
-        
-        
+        }    
     }
     
     public void seleccionCartones(String nombre1, String nombre2) {
@@ -146,8 +139,8 @@ public class main {
         this.variante1 = variante1;
         System.out.println("                              ------------------------------------------------------------------------------------");
 
-        if (variante1 < 5 && variante1 > 0) {
-            switch (variante1) {
+        if (variante1 < 5 && variante1 > 0) { //Utilizamos un if para que el usuario ingrese un valor dentro del rango requerido
+            switch (variante1) { //Mediante un switch mostramos las distintas opciones para cada valor 
                 case 1:
                     System.out.println("                                        " + nombre1 + " selecciono:");
                     carton_1();
@@ -175,7 +168,7 @@ public class main {
         }
         System.out.println("                              ------------------------------------------------------------------------------------");
 
-        if (cartonElegido == 1) {
+        if (cartonElegido == 1) { 
             carton_2();
             carton_3();
             carton_4();
@@ -204,8 +197,8 @@ public class main {
             this.variante2 = variante2;
             System.out.println("                              ------------------------------------------------------------------------------------");
 
-            if (variante2 < 5 && variante2 > 0 && variante2 != variante1) {
-                switch (variante2) {
+            if (variante2 < 5 && variante2 > 0 && variante2 != variante1) { //Usamos el if para que el usuario ingrese un valor dentro del rango requerido
+                switch (variante2) {                                       // y que a su vez no sea igual al valor de la variante anterior
                     case 1:
                         System.out.println("                                        " + nombre2 + " selecciono:");
                         carton_1();
@@ -233,11 +226,10 @@ public class main {
             
             break;
         }while (bandera = true);
-    
     }
 
     public void sortear(String nombre1, String nombre2){
-        boolean cartonLleno = false;
+        boolean cartonLleno = false; 
         int cont_carton1 = 0, cont_carton2 = 0, nro_sorteado;
         
         int variante1 = this.variante1;
@@ -254,8 +246,8 @@ public class main {
             animaciones.teclaSeguir();
             nro_sorteado = obtenerSinRepetir();
             
-            for(int i=0; i<=2; i++){
-                for(int j=0; j<=8; j++){
+            for(int i=0; i<=2; i++){         //Mediante el siguiente for se realiza la comprobación de coincidencias dentro de cada carton y 
+                for(int j=0; j<=8; j++){    //a su misma vez reemplazando los numeros sorteados con un "X"
                     if(Integer.toString(nro_sorteado).equals(carton1[i][j].replaceAll("\\s", ""))){
                         carton1[i][j] = " X";
                         cont_carton1++;
@@ -308,7 +300,6 @@ public class main {
         
     }
     
-    
     public int obtenerSinRepetir(){
 
         int nro_sorteado = 0;
@@ -328,8 +319,6 @@ public class main {
                     repetido=true; 
                 }                
             }
-            
-            
             if (repetido == true) {
                 i--;
             } else {
@@ -338,11 +327,8 @@ public class main {
                 this.nros[this.cont] = 0;
             }
         }
-        
         return nro_sorteado;
     }
-    
-    
     
     public static void armadoCartonPorVariante(int variante, String[][] carton){
         if (variante == 1){
@@ -409,9 +395,6 @@ public class main {
         System.out.println("                                        ----------------------------------------------");
      }
     
-    
-    
-    
     public static void armadoCarton2(String[][] carton2){
 
         carton2[0][0] = " 1"; carton2[0][1] = "0"; carton2[0][2] = "23"; carton2[0][3] = "0"; carton2[0][4] = "45"; carton2[0][5] = "0"; carton2[0][6] = "61"; carton2[0][7] = "0"; carton2[0][8] = "82"; 
@@ -442,13 +425,7 @@ public class main {
         System.out.println("                                        ----------------------------------------------");
         
      }
-    
-    
-    
-    
-    
-    
-    
+
     public static void armadoCarton3(String[][] carton3){
         carton3[0][0] = "0"; carton3[0][1] = "0"; carton3[0][2] = "22"; carton3[0][3] = "0"; carton3[0][4] = "40"; carton3[0][5] = "50"; carton3[0][6] = "0"; carton3[0][7] = "71"; carton3[0][8] = "0"; 
         carton3[1][0] = " 6"; carton3[1][1] = "0"; carton3[1][2] = "29"; carton3[1][3] = "30"; carton3[1][4] = "0"; carton3[1][5] = "54"; carton3[1][6] = "0"; carton3[1][7] = "0"; carton3[1][8] = "81";
@@ -477,12 +454,6 @@ public class main {
         }
         System.out.println("                                        ----------------------------------------------");
     }
-    
-    
-    
-    
-    
-    
     
     public static void armadoCarton4(String[][] carton4){
         carton4[0][0] = "0"; carton4[0][1] = "11"; carton4[0][2] = "0"; carton4[0][3] = "36"; carton4[0][4] = "43"; carton4[0][5] = "0"; carton4[0][6] = "64"; carton4[0][7] = "73"; carton4[0][8] = "83"; 
@@ -513,15 +484,6 @@ public class main {
         }
         System.out.println("                                        ----------------------------------------------");
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
     
     public static void carton_1(){
         String carton1[][] = new String[3][9]; 
@@ -544,8 +506,6 @@ public class main {
         mostrarCarton4(carton4);
         }
 
-    
-    
     
     public void jugarQuini6(){
         
@@ -597,9 +557,7 @@ public class main {
         }else{
             numeros[i] = numero;// cada numero ingresado por el usuario
                                 // es guardado en el arreglo
-        }
-                                
-                                
+        }                         
     }
     
     //--------------------------------------------------------------------------
@@ -632,7 +590,7 @@ public class main {
     //--------------------------------------------------------------------------    
     // Parte donde se asignan los premios segun la cantidad de coincidencias
     
-    if (cont != 0){
+    if (cont != 0){ //Utilizamos un if como condicion y lugo un switch para mostrar el orden de los premios segun corresponda
         switch (cont){
             case 1:
                 System.out.println("--> Su premio es un Mouse inalámbrico <--");
@@ -664,11 +622,8 @@ public class main {
     teclaSeguir();  // llamamos al metodo seguir para que
     menu();         // lo lleve de nuevo al manu principal 
     //--------------------------------------------------------------------------
-    
-    
     }  
-
-    }
+}
 
 
 
