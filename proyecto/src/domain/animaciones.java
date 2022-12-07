@@ -32,7 +32,7 @@ public class animaciones {
         System.out.println("                                                     - P O W E R   B I T S -");
     }
     
-    static public void teclaSeguir() {
+    public static void teclaSeguir() {
         String seguir;
         Scanner teclado = new Scanner(System.in);
         System.out.println("Presione una tecla para seguir...");
@@ -48,4 +48,10 @@ public class animaciones {
             System.out.println(e);
          }
     }     
+
+    static class teclaSeguir {
+
+        public teclaSeguir() {
+        }
+    }
 }
