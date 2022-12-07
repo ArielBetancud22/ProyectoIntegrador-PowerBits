@@ -2,27 +2,32 @@
 package domain;
 
 import static domain.animaciones.bienvenidos;
-import static domain.animaciones.desarrolladores;
 import static domain.animaciones.esperar;
-import static domain.animaciones.teclaSeguir;
-
 import java.util.Scanner;
+
 
 public class main {
     
-    public static void main(String[] args) {
-       //bienvenidos();
-       //animaciones.teclaSeguir();
-       menu();
-    }
+    private int variante1;
+    private int variante2;
+    private int cont = 0;
+    private int nros[] = new int[90];
 
-    public static void menu(){
+    
+    public static void main(String[] args) {
+       bienvenidos();
+       animaciones.teclaSeguir();
+       main me = new main();
+       me.menu();
+       
+       
+    }
+    
+    public void menu(){
         
         Scanner entrada = new Scanner(System.in);
         
-        int opcion; 
-        int variante1 = 0; 
-        int variante2 = 0;
+        int opcion;
         
         String nombre1 = " ";
         String nombre2 = " ";
@@ -36,11 +41,10 @@ public class main {
             System.out.println("                                        1- Jugar Loteria");
             System.out.println("                                        2- Jugar Quini6");
             System.out.println("                                        3- Salir");
-            System.out.println("                                        4- Desarrolladores");
             System.out.println("");
             System.out.print("                                        - Ingrese una opcion: ");
         opcion = Integer.parseInt(entrada.nextLine());
-        }while(opcion > 4 || opcion < 1);
+        }while(opcion > 3 || opcion < 1);
 
         
         System.out.println("");
@@ -49,25 +53,14 @@ public class main {
         
         switch(opcion){
             case 1:
-                menuJugadores(nombre1, nombre2, variante1, variante2);
-                break;
-            case 2:
-                jugarQuini6();
-                break;
-            case 3: 
-                esperar(1);
-                System.out.println("                                                                   -> HASTA PRONTO <-"); 
-                break;
-            case 4: 
-                esperar(1);
-                desarrolladores();
-                menu();
+                menuJugadores(nombre1, nombre2);
+                
         }
 
     }
     
     
-    public static void menuJugadores(String nombre1, String nombre2, int variante1, int variante2){
+    public void menuJugadores(String nombre1, String nombre2){
         
         Scanner entrada = new Scanner(System.in); 
         
@@ -102,19 +95,21 @@ public class main {
                 System.out.println("");
                 animaciones.teclaSeguir();
                 System.out.println("");
+                menuJugadores(nombre1, nombre2);
             case 2:
-                seleccionCartones(nombre1, nombre2, variante1, variante2);
-                sortear(variante1, variante2, nombre1, nombre2);
-                
+                seleccionCartones(nombre1, nombre2);
+                menuJugadores(nombre1, nombre2);                
             case 3:
-                
-        }
+                sortear(nombre1, nombre2);
+                animaciones.teclaSeguir();
+                menuJugadores(nombre1, nombre2);
+
+        } 
+        
         
     }
-    public static void seleccionCartones(){
-        
-    }
-    public static void seleccionCartones(String nombre1, String nombre2, int variante1, int variante2){
+    
+    public void seleccionCartones(String nombre1, String nombre2){
         Scanner entrada = new Scanner(System.in); 
         
         int cartonElegido = 0;
@@ -123,6 +118,7 @@ public class main {
         
         System.out.print("                                       - "+nombre1+" seleccione el numero de carton que desee: ");
         variante1 = Integer.parseInt(entrada.nextLine());
+        this.variante1 = variante1;
         System.out.println("                     ------------------------------------------------------------------------------------");
         switch (variante1) {
             case 1:
@@ -158,6 +154,7 @@ public class main {
         }
         System.out.print("                                       - "+nombre2+" seleccione el numero de carton que desee: ");
         variante2 = Integer.parseInt(entrada.nextLine());
+        this.variante2 = variante2;
         System.out.println("                     ------------------------------------------------------------------------------------");
         switch (variante2) {
             case 1:
@@ -180,12 +177,12 @@ public class main {
 
     }
     
-    public static void sortear(int variante1, int variante2, String nombre1, String nombre2){
+    public void sortear(String nombre1, String nombre2){
         boolean cartonLleno = false;
-        int cont = 0, cont_carton1 = 0, cont_carton2 = 0;
+        int cont_carton1 = 0, cont_carton2 = 0, nro_sorteado;
         
-        
-        int nros[] = new int[90];
+        int variante1 = this.variante1;
+        int variante2 = this.variante2;
         String carton1[][] = new String[3][9];
         String carton2[][] = new String[3][9];
         
@@ -195,56 +192,88 @@ public class main {
         do{
             System.out.println("");
             System.out.println("");
+            animaciones.teclaSeguir();
+            nro_sorteado = obtenerSinRepetir();
+            
+            for(int i=0; i<=2; i++){
+                for(int j=0; j<8; j++){
+                    if(Integer.toString(nro_sorteado).equals(carton1[i][j].replaceAll("\\s", ""))){
+                        carton1[i][j] = "X";
+                        cont_carton1++;
+                    }
+                    if(Integer.toString(nro_sorteado).equals(carton2[i][j].replaceAll("\\s", ""))){
+                        carton2[i][j] = "X";
+                        cont_carton2++;
+                    }
+                }
+            }
+            
+            System.out.println("           "+nombre1);
             System.out.println("");
-            animaciones.teclaSortear();
-            obtenerSinRepetir(nros, cont);
+            mostrarCartonPorVariante(variante1,carton1);
+            System.out.println("            "+nombre2);
+            mostrarCartonPorVariante(variante2,carton2);
+            System.out.println("");
+            System.out.println("");
+            System.out.println("                             El numero sorteado es: " + nro_sorteado);
+            System.out.println("");
             
+            for(int i=0; i<cont; i++){
+                if(this.nros[i] > 0){
+                    System.out.print(" " + this.nros[i]);
+                }
+                if (i == 45) {
+                    System.out.println("");
+                }
+            }
+            System.out.println("");
+
+            if(cont_carton1 == 15){
+                System.out.flush();
+                System.out.println("Falta animacion carton lleno");
+                cartonLleno = true;
+            }
             
-            
-        }while(cartonLleno == true);
+             if(cont_carton2 == 15){
+                System.out.flush();
+                System.out.println("Falta animacion carton lleno");
+                cartonLleno = true;
+            }
+        }while(cartonLleno == false);
         
     }
     
     
-    public static void obtenerSinRepetir(int[] nros, int cont){
+    public int obtenerSinRepetir(){
+
+        int nro_sorteado = 0;
+        boolean repetido;
         
-        
-        for (int i = 1; i < 1; i++) {
-            boolean repetido = false;
-            int nro_sorteado = (int)(Math.random()*((90-0)+1));
+        for (int i = 1; i <= 1; i++) {
+            System.out.println("Contador: " + this.cont);
+            repetido = false;
+            nro_sorteado = (int) (Math.random()*90);
             
-            for (int j = 1; cont == j; j++) {
-                
-                if (nro_sorteado == nros[j]){
-                    repetido = true;
-                }
+            System.out.println("NRO SORTEADO: " + nro_sorteado);
+            
+            for(int j=1; j <= this.cont; j++) {
+                System.out.println("COMPARA " + this.nros[j]);
+                if (nro_sorteado == this.nros[j]) {
+                    repetido=true; 
+                }                
             }
-            if (repetido = true){
-                i = i-1;
+            
+            
+            if (repetido == true) {
+                i--;
+            } else {
+                this.nros[this.cont] = nro_sorteado;
+                this.cont++;
+                this.nros[this.cont] = 0;
             }
-            else {
-                nros[cont] = nro_sorteado;
-                cont = cont++;
-                nros[cont] = 0;
-            } 
-         // System.out.println("Numero sorteado: "+nro_sorteado);  
         }
-  }
-    
-    public static void buscarCoincidencias(int [][]carton, int num,int cont){
-        int   k, textNum = 0;
-        String x, deIaS;
         
-        for (int i = 0; i == 2; i++) {
-            for (int j = 0; j == 8; j++) {
-                textNum = num;
-                deIaS = textNum+"";
-                if (textNum == carton[i][j]){
-                    carton[i][j] = Integer.parseInt("X");
-                    cont++;
-                }
-            }
-        }
+        return nro_sorteado;
     }
     
     
@@ -456,127 +485,6 @@ public class main {
         }
 
     
-    
-    
-    public static void jugarQuini6(){
-        
-    Scanner entrada = new Scanner(System.in); 
-    
-    //--------------------------------------------------------------------------
-    // Parte bienvenidos al quini
-    System.out.println("                                                                    Q U I N I - 6");
-    
-    //--------------------------------------------------------------------------
-    // Creamos el arreglo que tendra los numeros aleatorios sin repetir
-    
-    int aleatorios[] = new int[6];  // iniciamos el arreglo
-    
-
-    for (int i = 0; i < 6; i++) {   // iniciamos el primer ciclo for, este hace 6 veces el recorrido
-
-        boolean encontrado = false; // usamos una variable como bandera
-
-        int aleatorio = (int) (Math.random() * 49) + 1; // le asignamos un numero aleatorio a la variable
-
-        for (int j = 0; j < i; j++) {   // segundo ciclo for, este verifica que no se repitan los numeros generados al azar
-            if (aleatorios[j] == aleatorio) {   // se recorre todo el arreglo, y si el numero aleatorio esta repetido
-                encontrado = true;  // la bandera pasa a ser verdadera
-            }
-        }
-        if (!encontrado) {
-            aleatorios[i] = aleatorio; // aca se guardan los numeros sin repetir
-        }else{                         // para despues poder mostrarlos
-            i--;
-        }
-    }
-    //--------------------------------------------------------------------------
-    // Parte donde el usuario ingresa los numeros que eligio
-    
-    int numeros[] = new int[6];
-    int numero;
-    System.out.println("");
-    System.out.println("");
-    System.out.println(" - Digite sus numeros elegidos");
-    for (int i = 0; i < 6; i++) {
-        System.out.print(" - Numero "+(i+1)+": ");
-        numero = entrada.nextInt();
-            
-        if (numero < 0 || numero > 50){ // si el numero esta fuera de rango no ingresa al arreglo y el iterador retrocede uno
-            System.out.println("Fuera de rango, ingrese otro numero...");
-            i --;
-        }else{
-            numeros[i] = numero;// cada numero ingresado por el usuario
-                                // es guardado en el arreglo
-        }
-                                
-                                
-    }
-    
-    //--------------------------------------------------------------------------
-    // Ahora vemos si hay repetidos en los dos arreglos
-    
-    int cont = 0;
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 6; j++) {
-            if (numeros[i]==aleatorios[j]){
-                cont += 1;
-            }
-        }
-    }
-    //--------------------------------------------------------------------------
-    // Mostramos los numeros premiados y el premio del jugador
-    esperar(2);
-    System.out.println("");
-    System.out.println("-------------------------");
-    System.out.println("--> NUMEROS PREMIADOS <--");
-    for (int i = 0; i < 6; i++) {
-        System.out.print(" "+aleatorios[i]+" ");
-    } 
-    System.out.println("");
-    System.out.println("-------------------------");
-    esperar(1);
-    System.out.println("");
-    System.out.println("- La cantidad de coincidencias son: "+cont);
-    System.out.println("");
-        
-    //--------------------------------------------------------------------------    
-    // Parte donde se asignan los premios segun la cantidad de coincidencias
-    
-    if (cont != 0){
-        switch (cont){
-            case 1:
-                System.out.println("--> Su premio es un Mouse inalámbrico <--");
-                break;
-            case 2:
-                System.out.println("--> Su premio son unos Auriculares con Microfono <--");
-                break;
-            case 3:
-                System.out.println("--> Su premio es un Monitor 144hz <--");
-                break;
-            case 4: 
-                System.out.println("--> Su premo es una Silla Gamer <--");
-                break;
-            case 5:
-                System.out.println("--> Su premo es una Pc Gamer <--");
-                break;
-            case 6: 
-                System.out.println("--> Su premio es una Pc Gamer + Periféricos <--");
-                break;
-            }
-    }else{
-        esperar(2);
-        System.out.println("------------------------------------");
-        System.out.println("Lo sentimos, no obtuvo ningun premio");
-        System.out.println("         La proxima sera :)");
-        System.out.println("------------------------------------");
-        }
-    esperar(2);
-    teclaSeguir();  // llamamos al metodo seguir para que
-    menu();         // lo lleve de nuevo al manu principal 
-    //--------------------------------------------------------------------------
-    
-    
-    }  
 }   
 
 
