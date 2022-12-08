@@ -63,12 +63,8 @@ public class main {
                 esperar(1);
                 menu();
             case 4:
-                esperar(1);
-                System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-                System.out.println("                                                          - - - H A S T A  P R O N T O - - -");
-                esperar(1);
-                System.out.println("\n                                                                      PowerBits");
-                System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+                animaciones.hastaPronto();
+                break;
         }
     }
     
@@ -114,7 +110,7 @@ public class main {
                 menuJugadores(nombre1, nombre2);      // Regreso al menu de jugadores con los cartones seleccionados          
             case 3:
                 sortear(nombre1, nombre2);   // Llamamos al método sortear para jugar
-                animaciones.teclaSeguir();
+                teclaSeguir();
                 menu();
             case 4:
                 menu();   //regreso al menu principal
@@ -187,7 +183,7 @@ public class main {
             carton_3();
         }
 
-        boolean bandera;
+        boolean bandera = false;
         do {
             System.out.println("");
             System.out.println("");
@@ -225,7 +221,7 @@ public class main {
                 bandera = false;
             }
             
-            break;
+            
         }while (bandera = true);
     }
 
@@ -287,16 +283,20 @@ public class main {
             System.out.println("");
 
             // Si el contador de cada carton llega a 15 (es la cantidad de numeros por carton) es CartonLLeno
-            if(cont_carton1 == 15){                
+            if(cont_carton1 == 15){
+                esperar(1);
                 animaciones.cartonLleno();
                 System.out.println("");
+                esperar(2);
                 System.out.println("                                           FELICITACIONES "+nombre1+" HAS GANADO EL JUEGO");
                 cartonLleno = true;
             }
             
             if(cont_carton2 == 15){
+                esperar(1);
                 animaciones.cartonLleno();
                 System.out.println("");
+                esperar(2);
                 System.out.println("                                           FELICITACIONES "+nombre2+" HAS GANADO EL JUEGO");
                 cartonLleno = true;
             }

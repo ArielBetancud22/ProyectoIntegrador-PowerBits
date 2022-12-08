@@ -25,6 +25,15 @@ public class animaciones {
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
     }
     
+    public static void hastaPronto(){
+        esperar(1);
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("                                                          - - - H A S T A  P R O N T O - - -");
+        esperar(1);
+        System.out.println("\n                                                                      PowerBits");
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+    }
+    
     public static void cartonLleno(){
         System.out.println("");
         System.out.println("");
@@ -66,8 +75,6 @@ public class animaciones {
         System.out.println("                                                   - Nadia Gonzalez");
         esperar(1);
         System.out.println("                                                   - Nicolás Machuca\n");
-        esperar(2);
-        System.out.println("                                                                 - P O W E R   B I T S -");
     }
     
     public static void teclaSeguir() {
